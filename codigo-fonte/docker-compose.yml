@@ -1,0 +1,45 @@
+zenon-db:
+  container_name: zenon-db
+  image: mysql:5.5
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: zenon-laravel
+  ports:
+    - "3306:3306"
+zenon-www:
+  image: jointecnologia/laravel
+  container_name: zenon-www
+  environment:
+    REDIRECT_HTTPS: "false"
+    DEBUGBAR_ENABLED: "true"
+    MYSQL_ROOT_USER: root
+    APP_ENV: local
+    APP_VERSION: 4.0
+    APP_KEY: "base64:ui78kZOJLMtIoqOcw8TrYRUYHpdOTDeb2owgJm0m7kY="
+    APP_DEBUG: "true"
+    APP_LOG_LEVEL: debug
+    APP_URL: "http://localhost"
+    BROADCAST_DRIVER: "log"
+    CACHE_DRIVER: "file"
+    SESSION_DRIVER: "file"
+    QUEUE_DRIVER: "sync"
+    REDIS_HOST: "127.0.0.1"
+    REDIS_PASSWORD: "null"
+    REDIS_PORT: "6379"
+    MAIL_DRIVER: "smtp"
+    MAIL_HOST: "mailtrap.io"
+    MAIL_PORT: "2525"
+    MAIL_USERNAME: "null"
+    MAIL_PASSWORD: "null"
+    MAIL_ENCRYPTION: "null"
+    PUSHER_APP_ID: ""
+    PUSHER_KEY: ""
+    PUSHER_SECRET: ""
+    APISICONV_CLIENT: TvWs5ihx3tL0x20TcQ2ufI6iMePLrB
+    APISICONV_SECRET: JN9kgKu8K4hq5toxkVPfSFTQvwhLAj
+  volumes:
+    - .:/var/www/html
+  links:
+    - zenon-db:db
+  ports:
+    - "80:80"
