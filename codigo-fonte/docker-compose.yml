@@ -7,7 +7,7 @@ zenon-db:
   ports:
     - "3306:3306"
 zenon-www:
-  image: jointecnologia/laravel
+  image: zenon/thiago
   container_name: zenon-www
   environment:
     REDIRECT_HTTPS: "false"
